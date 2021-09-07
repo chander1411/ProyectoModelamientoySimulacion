@@ -28,6 +28,9 @@ import { RegresioncuadraticaComponent } from './regresioncuadratica/regresioncua
 import { MontecarloComponent } from './montecarlo/montecarlo.component';
 import { InventariosComponent } from './inventarios/inventarios.component';
 import { LineaesperaComponent } from './lineaespera/lineaespera.component';
+import { DocumentacionComponent } from './documentacion/documentacion.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import {MatButtonModule} from '@angular/material/button';
 
 
 
@@ -46,6 +49,7 @@ import { LineaesperaComponent } from './lineaespera/lineaespera.component';
     MontecarloComponent,
     InventariosComponent,
     LineaesperaComponent,
+    DocumentacionComponent,
 
 
   ],
@@ -69,14 +73,17 @@ import { LineaesperaComponent } from './lineaespera/lineaespera.component';
       { path: 'regresioncuadratica', component: RegresioncuadraticaComponent },
       { path: 'montecarlo', component: MontecarloComponent },
       { path: 'inventarios', component: InventariosComponent },
-      { path: 'lineasespera', component: LineaesperaComponent }
+      { path: 'lineasespera', component: LineaesperaComponent },
+      { path: 'documentacion', component: DocumentacionComponent },
     ]),
     MatDividerModule,
     MatMenuModule,
     ReactiveFormsModule,
     MatCardModule,
     MatTableModule,
-    FormsModule
+    FormsModule,
+    PdfViewerModule,
+    MatButtonModule
 
   ],
   providers: [],
