@@ -1,0 +1,54 @@
+<div class="titulo"><a>Lectura de Datos</a></div>
+<mat-card>
+    <a class="description">El siguiente programa permite analizar datos de dos columnas utilizanddo un archivo .csv o
+        .xlsx obteniendo una tabla la cual tiene datos como media, mediana, moda y demas datos, al igual quen la grafica
+        correspondiente.</a>
+</mat-card>
+<div class="datos">
+    <form (ngSubmit)="onUpload()" [formGroup]="Form">
+        <label>
+            <span>Archivo Datos (.csv, .xlsx)</span>
+            <br><br>
+            <input class="hidden" type="file" #file accept=".csv, .xlsx" (change)="validar(file.files)"
+                class="inputfile" required>
+        </label>
+        <br>
+        <br>
+        <label>
+            <span>Columna X</span>
+            <br><br>
+            <select formControlName="columnax" required>
+                <option value="">Selecciona una opción</option>
+                <option *ngFor="let opcion of opciones">
+                    {{opcion}}
+                </option>
+            </select>
+        </label>
+        <br>
+        <br>
+        <label>
+            <span>Columna Y</span>
+            <br><br>
+            <select formControlName="columnay" required>
+                <option value="">Selecciona una opción</option>
+                <option *ngFor="let opcion of opciones">
+                    {{opcion}}
+                </option>
+            </select>
+        </label>
+        <br>
+        <br>
+        <button [disabled]="Form.invalid" type="submit" class="btn btn-success">Calcular</button>
+    </form>
+</div>
+<br>
+<br>
+<div *ngIf="llegaronDatos">
+    <div class="titulo"><a>Datos analizados</a></div>
+    <br><br>
+    <img class="imagenes" [src]="datosImg" />
+    <br><br>
+    <div class="titulo"><a>Grafica</a></div>
+    <br><br>
+    <img class="imagenes" [src]="graficaImg" alt="" />
+</div>

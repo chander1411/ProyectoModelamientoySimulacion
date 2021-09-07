@@ -1,0 +1,131 @@
+<div class="titulo"><a>Simulación de Montecarlo</a></div>
+<mat-card>
+    <a class="description">La simulación de Monte Carlo es una técnica que combina conceptos estadísticos (muestreo
+        aleatorio) a partir de una
+        distribución de probabilidad, la utilización del computador por la rapidez, permite realizar simulación
+        matemática de los
+        problemas tomando observaciones para hacer deducciones con respecto al sistema real.</a>
+    <br>
+    <a class="description">El siguiente programa utiliza un archivo .csv o .xlsx, se utilizan 3 columnas y un nùmero
+        especifico de simulaciones para realizar
+        los calculos.</a>
+</mat-card>
+<div class="datos">
+    <form (ngSubmit)="onUpload()" [formGroup]="Form">
+        <label>
+            <span>Archivo Datos (.csv, .xlsx)</span>
+            <br><br>
+            <input class="hidden" type="file" #file accept=".csv, .xlsx" (change)="validar(file.files)"
+                class="inputfile" required>
+        </label>
+        <br>
+        <br>
+        <label>
+            <span>Columna X</span>
+            <br><br>
+            <select formControlName="columnax" required>
+                <option value="">Selecciona una opción</option>
+                <option *ngFor="let opcion of opciones">
+                    {{opcion}}
+                </option>
+            </select>
+        </label>
+        <br>
+        <br>
+        <label>
+            <span>Columna Y</span>
+            <br><br>
+            <select formControlName="columnay" required>
+                <option value="">Selecciona una opción</option>
+                <option *ngFor="let opcion of opciones">
+                    {{opcion}}
+                </option>
+            </select>
+        </label>
+        <br>
+        <br>
+        <label>
+            <span>Columna Probabilidades</span>
+            <br><br>
+            <select formControlName="columnaprobabilidades" required>
+                <option value="">Selecciona una opción</option>
+                <option *ngFor="let opcion of opciones">
+                    {{opcion}}
+                </option>
+            </select>
+        </label>
+        <br>
+        <br>
+        <label>
+            <span>Cantidad Simulaciones</span>
+            <br>
+            <br>
+            <input type="text" formControlName="numerosimulaciones" required>
+        </label>
+        <br>
+        <br>
+        <button [disabled]="Form.invalid" type="submit" class="btn btn-success">Calcular</button>
+    </form>
+</div>
+<br>
+<div *ngIf="llegaronDatos">
+
+    <div class="titulo"><a>Datos analizados</a></div>
+    <br /><br />
+    <table mat-table [dataSource]="dataSource1" class="mat-elevation-z8">
+        <!-- Name Column -->
+        <ng-container [matColumnDef]=Form.value.columnax>
+            <th mat-header-cell *matHeaderCellDef>{{Form.value.columnax}}</th>
+            <td mat-cell *matCellDef="let element">{{ element[Form.value.columnax] }}</td>
+        </ng-container>
+        <!-- Weight Column -->
+        <ng-container [matColumnDef]=Form.value.columnay>
+            <th mat-header-cell *matHeaderCellDef>{{Form.value.columnay}}</th>
+            <td mat-cell *matCellDef="let element">{{ element[Form.value.columnay] }}</td>
+        </ng-container>
+
+        <ng-container [matColumnDef]=Form.value.columnaprobabilidades>
+            <th mat-header-cell *matHeaderCellDef>{{Form.value.columnaprobabilidades}}</th>
+            <td mat-cell *matCellDef="let element">{{ element[Form.value.columnaprobabilidades] }}</td>
+        </ng-container>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="FDP">
+            <th mat-header-cell *matHeaderCellDef>FDP</th>
+            <td mat-cell *matCellDef="let element">{{ element['FDP'] }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Min">
+            <th mat-header-cell *matHeaderCellDef>Min</th>
+            <td mat-cell *matCellDef="let element">{{ element['Min'] }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Max">
+            <th mat-header-cell *matHeaderCellDef>Max</th>
+            <td mat-cell *matCellDef="let element">{{ element['Max'] }}</td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns1"></tr>
+    </table>
+    <br><br>
+    <div class="titulo"><a>Suma de simulaciones</a></div>
+    <br><br>
+    <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
+        <ng-container matColumnDef="index">
+            <th mat-header-cell *matHeaderCellDef>Index</th>
+            <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="Suma de las simulaciones">
+            <th mat-header-cell *matHeaderCellDef>Suma de las simulaciones</th>
+            <td mat-cell *matCellDef="let element">{{ element['Suma de las simulaciones'] }}</td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns2"></tr>
+    </table>
+    <br><br>
+    <div class="titulo"><a>Gráfica</a></div>
+    <br><br>
+    <img class="imagenes" [src]="graficaImg" alt="" />
+</div>

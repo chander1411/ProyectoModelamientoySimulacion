@@ -1,0 +1,159 @@
+<div class="titulo"><a>Simulación Lineas de Espera</a></div>
+<mat-card>
+    <a class="description">Una línea de espera es el efecto resultante en un sistema cuando la demanda de un servicio
+        supera la capacidad de proporcionar dicho servicio. Este sistema está formado por un conjunto de entidades en
+        paralelo que proporcionan un servicio a las transacciones que aleatoriamente entran al sistema.</a>
+    <br>
+    <a class="description">El siguiente programa realiza la simulacion de lineas de espera utilizando datos de Lambda y
+        NU.</a>
+</mat-card>
+<div class="datos">
+    <form (ngSubmit)="onUpload()" [formGroup]="Form">
+        <label>
+            <span>Lambda</span>
+            <br>
+            <br>
+            <input type="text" formControlName="lambda" required>
+        </label>
+        <br>
+        <br>
+        <label>
+            <span>NU</span>
+            <br>
+            <br>
+            <input type="text" formControlName="nu" required>
+        </label>
+        <br><br>
+        <button [disabled]="Form.invalid" type="submit" class="btn btn-success">Calcular</button>
+    </form>
+</div>
+<br><br>
+<ng-container class="tabla" *ngIf="llegaronDatos">
+    <div class="titulo"><a>Resultado de la simulación:</a></div>
+    <br>
+    <div class="titulo"><a>Tabla de datos:</a></div>
+    <br>
+    <br>
+    <table mat-table [dataSource]="dataSource1" class="mat-elevation-z8">
+        <ng-container matColumnDef="A_LLEGADA">
+            <th mat-header-cell *matHeaderCellDef>A_LLEGADA</th>
+            <td mat-cell *matCellDef="let element">{{ element.A_LLEGADA }}</td>
+        </ng-container>
+        <ng-container matColumnDef="A_SERVICIO">
+            <th mat-header-cell *matHeaderCellDef>A_SERVICIO</th>
+            <td mat-cell *matCellDef="let element">{{ element.A_SERVICIO }}</td>
+        </ng-container>
+        <ng-container matColumnDef="TIE_LLEGADA">
+            <th mat-header-cell *matHeaderCellDef>TIE_LLEGADA</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.TIE_LLEGADA }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="TIE_SERVICIO">
+            <th mat-header-cell *matHeaderCellDef>TIE_SERVICIO</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element["TIE_SERVICIO"] }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="TIE_EXACTO_LLEGADA">
+            <th mat-header-cell *matHeaderCellDef>TIE_EXACTO_LLEGADA</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element["TIE_EXACTO_LLEGADA"] }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="TIE_INI_SERVICIO">
+            <th mat-header-cell *matHeaderCellDef>TIE_INI_SERVICIO</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element["TIE_INI_SERVICIO"] }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="TIE_FIN_SERVICIO">
+            <th mat-header-cell *matHeaderCellDef>TIE_FIN_SERVICIO</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element["TIE_FIN_SERVICIO"] }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="TIE_ESPERA">
+            <th mat-header-cell *matHeaderCellDef>TIE_ESPERA</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element["TIE_ESPERA"] }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="TIE_EN_SISTEMA">
+            <th mat-header-cell *matHeaderCellDef>TIE_EN_SISTEMA</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element["TIE_EN_SISTEMA"] }}
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns1"></tr>
+    </table>
+    <br>
+    <br>
+    <div class="titulo"><a>Gráfica:</a></div>
+    <img class="imagenes" [src]="grafica" />
+    <br>
+    <br>
+    <div class="titulo"><a>Tabla:</a></div>
+    <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
+        <ng-container matColumnDef="CATEGORIAS">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element; let i = index;">{{ categorias[i] }}</td>
+        </ng-container>
+        <ng-container matColumnDef="A_LLEGADA">
+            <th mat-header-cell *matHeaderCellDef>A_LLEGADA</th>
+            <td mat-cell *matCellDef="let element">{{ element.A_LLEGADA }}</td>
+        </ng-container>
+        <ng-container matColumnDef="A_SERVICIO">
+            <th mat-header-cell *matHeaderCellDef>A_SERVICIO</th>
+            <td mat-cell *matCellDef="let element">{{ element.A_SERVICIO }}</td>
+        </ng-container>
+        <ng-container matColumnDef="TIE_LLEGADA">
+            <th mat-header-cell *matHeaderCellDef>TIE_LLEGADA</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.TIE_LLEGADA }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="TIE_SERVICIO">
+            <th mat-header-cell *matHeaderCellDef>TIE_SERVICIO</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element["TIE_SERVICIO"] }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="TIE_EXACTO_LLEGADA">
+            <th mat-header-cell *matHeaderCellDef>TIE_EXACTO_LLEGADA</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element["TIE_EXACTO_LLEGADA"] }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="TIE_INI_SERVICIO">
+            <th mat-header-cell *matHeaderCellDef>TIE_INI_SERVICIO</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element["TIE_INI_SERVICIO"] }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="TIE_FIN_SERVICIO">
+            <th mat-header-cell *matHeaderCellDef>TIE_FIN_SERVICIO</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element["TIE_FIN_SERVICIO"] }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="TIE_ESPERA">
+            <th mat-header-cell *matHeaderCellDef>TIE_ESPERA</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element["TIE_ESPERA"] }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="TIE_EN_SISTEMA">
+            <th mat-header-cell *matHeaderCellDef>TIE_EN_SISTEMA</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element["TIE_EN_SISTEMA"] }}
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns2"></tr>
+    </table>
+</ng-container>

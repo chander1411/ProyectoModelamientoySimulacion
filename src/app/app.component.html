@@ -1,91 +1,100 @@
 <mat-toolbar>
     Modelamiento Y Simulacion
 </mat-toolbar>
-    <mat-sidenav-container>
-        <mat-sidenav mode="side" opened class="mat-elevation-z8">
-            <button mat-button class="menu-button" routerLink="">
-                <mat-icon>home</mat-icon>
-                <span>Inicio</span>
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened class="mat-elevation-z8">
+        <button mat-button class="menu-button" routerLink="">
+            <mat-icon>home</mat-icon>
+            <span>Inicio</span>
+        </button>
+        <div class="spacer1"></div>
+        <!-- SubMenu Unidad 1 -->
+        <button mat-button [matMenuTriggerFor]="menu1" class="menu-button">
+            <mat-icon>more_vert</mat-icon>
+            <span>Parcial 1</span>
+        </button>
+        <mat-menu #menu1="matMenu">
+            <button mat-menu-item routerLink="/lecturadatos">
+                <mat-icon>description</mat-icon>
+                <span>Lectura Datos</span>
             </button>
-            <div class="spacer1"></div>
-            <!-- SubMenu Unidad 1 -->
-            <button mat-button [matMenuTriggerFor]="menu1" class="menu-button">
-                <mat-icon>more_vert</mat-icon>
-                <span>Unidad 1</span>
+            <button mat-menu-item routerLink="/media-mediana-moda">
+                <mat-icon>description</mat-icon>
+                <span>Media Mediana Moda</span>
             </button>
-            <mat-menu #menu1="matMenu">
-                <button mat-menu-item  routerLink="/lecturadatos">
-                    <mat-icon>description</mat-icon>
-                    <span>Lectura Datos</span>
-                </button>
-            </mat-menu>
-            <!-- . -->
-            <div class="spacer2"></div>
-            <!-- SubMenu Unidad 2 -->
-            <button mat-button [matMenuTriggerFor]="menu2" class="menu-button">
-                <mat-icon>more_vert</mat-icon>
-                <span>Unidad 2</span>
+            <button mat-menu-item routerLink="/cuadmedios">
+                <mat-icon>description</mat-icon>
+                <span>Cuadrados Medios</span>
             </button>
-            <mat-menu #menu2="matMenu">
-                <button mat-menu-item  routerLink="/lecturadatos">
-                    <mat-icon>description</mat-icon>
-                    <span>Lectura</span>
-                </button>
-            </mat-menu>
-            <!-- . -->
-            <div class="spacer2"></div>
-            <!-- SubMenu Unidad 3 -->
-            <button mat-button [matMenuTriggerFor]="menu3" class="menu-button">
-                <mat-icon>more_vert</mat-icon>
-                <span>Unidad 3</span>
+        </mat-menu>
+        <!-- . -->
+        <div class="spacer2"></div>
+        <div class="spacer2"></div>
+        <!-- SubMenu Unidad 2 -->
+        <mat-divider></mat-divider>
+        <button mat-button class="menu-button">
+            <mat-icon>grade</mat-icon>
+            <span>Parcial 2</span>
+        </button>
+        <div class="spacer2"></div>
+        <button mat-button [matMenuTriggerFor]="menu2" class="menu-button">
+            <mat-icon>more_vert</mat-icon>
+            <span>Pronósticos</span>
+        </button>
+        <mat-menu #menu2="matMenu">
+            <button mat-menu-item routerLink="/promediomovil">
+                <mat-icon>description</mat-icon>
+                <span>Promedio Movil</span>
             </button>
-            <mat-menu #menu3="matMenu">
-                <button mat-menu-item  routerLink="/lecturadatos">
-                    <mat-icon>description</mat-icon>
-                    <span>Lectura Datos</span>
-                </button>
-            </mat-menu>
-            <!-- . -->
-            <div class="spacer2"></div>
-            <!-- SubMenu Unidad 4 -->
-            <button mat-button [matMenuTriggerFor]="menu4" class="menu-button">
-                <mat-icon>more_vert</mat-icon>
-                <span>Unidad 4</span>
+            <button mat-menu-item routerLink="/suavizamiento">
+                <mat-icon>description</mat-icon>
+                <span>Suavizamiento</span>
             </button>
-            <mat-menu #menu4="matMenu">
-                <button mat-menu-item  routerLink="/lecturadatos">
-                    <mat-icon>description</mat-icon>
-                    <span>Lectura Da</span>
-                </button>
-            </mat-menu>
-            <!-- . -->
-            <div class="spacer2"></div>
-            <!-- SubMenu Unidad 5 -->
-            <button mat-button [matMenuTriggerFor]="menu5" class="menu-button">
-                <mat-icon>more_vert</mat-icon>
-                <span>Unidad 5</span>
+            <button mat-menu-item routerLink="/regresionlineal">
+                <mat-icon>description</mat-icon>
+                <span>Regresión Lineal</span>
             </button>
-            <mat-menu #menu5="matMenu">
-                <button mat-menu-item  routerLink="/lecturadatos">
-                    <mat-icon>description</mat-icon>
-                    <span>Lectura D</span>
-                </button>
-            </mat-menu>
-            <!-- . -->
-            <mat-divider></mat-divider>
-            <button mat-button class="menu-button">
-                <mat-icon>info</mat-icon>
-                <span>About</span>
+            <button mat-menu-item routerLink="/regresioncuadratica">
+                <mat-icon>description</mat-icon>
+                <span>Regresión Cuadrática</span>
             </button>
-            <div class="spacer2"></div>
-            <button mat-button class="menu-button">
-                <mat-icon>help</mat-icon>
-                <span>Help</span>
+        </mat-menu>
+        <div class="spacer2"></div>
+        <button mat-button [matMenuTriggerFor]="menu3" class="menu-button">
+            <mat-icon>more_vert</mat-icon>
+            <span>Simulación</span>
+        </button>
+        <mat-menu #menu3="matMenu">
+            <button mat-menu-item routerLink="/montecarlo">
+                <mat-icon>description</mat-icon>
+                <span>Montecarlo</span>
             </button>
-        </mat-sidenav>
-        <mat-sidenav-content>
-            <div class="content mat-elevation-z8">
-                <router-outlet></router-outlet>
-            </div>
-        </mat-sidenav-content>
-    </mat-sidenav-container>
+            <button mat-menu-item routerLink="/inventarios">
+                <mat-icon>description</mat-icon>
+                <span>Inventarios</span>
+            </button>
+            <button mat-menu-item routerLink="/lineasespera">
+                <mat-icon>description</mat-icon>
+                <span>Lineas de Espera</span>
+            </button>
+        </mat-menu>
+        <!-- . -->
+        <div class="spacer2"></div>
+        <!-- . -->
+        <mat-divider></mat-divider>
+        <button mat-button class="menu-button">
+            <mat-icon>info</mat-icon>
+            <span>About</span>
+        </button>
+        <div class="spacer2"></div>
+        <button mat-button class="menu-button">
+            <mat-icon>help</mat-icon>
+            <span>Help</span>
+        </button>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="content mat-elevation-z8">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

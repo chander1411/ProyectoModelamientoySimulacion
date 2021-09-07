@@ -1,0 +1,84 @@
+<div class="titulo"><a>Regresión Lineal</a></div>
+<mat-card>
+    <a class="description">La regresión lineal es una técnica de modelado estadístico que se emplea para describir una
+        variable de respuesta continua como una función de una o varias variables predictoras. Puede ayudar a comprender
+        y predecir el comportamiento de sistemas complejos o a analizar datos experimentales, financieros y
+        biológicos.</a>
+    <br>
+    <a class="description">El siguiente programa utiliza un archivo .csv o .xlsx, se utilizan 2 columnas para realizar
+        los calculos.</a>
+</mat-card>
+<div class="datos">
+    <form (ngSubmit)="onUpload()" [formGroup]="Form">
+        <label>
+            <span>Archivo Datos (.csv, .xlsx)</span>
+            <br><br>
+            <input class="hidden" type="file" #file accept=".csv, .xlsx" (change)="validar(file.files)"
+                class="inputfile" required>
+        </label>
+        <br>
+        <br>
+        <label>
+            <span>Columna X</span>
+            <br><br>
+            <select formControlName="columnax" required>
+                <option value="">Selecciona una opción</option>
+                <option *ngFor="let opcion of opciones">
+                    {{opcion}}
+                </option>
+            </select>
+        </label>
+        <br>
+        <br>
+        <label>
+            <span>Columna Y</span>
+            <br><br>
+            <select formControlName="columnay" required>
+                <option value="">Selecciona una opción</option>
+                <option *ngFor="let opcion of opciones">
+                    {{opcion}}
+                </option>
+            </select>
+        </label>
+        <br>
+        <br>
+        <button [disabled]="Form.invalid" type="submit" class="btn btn-success">Calcular</button>
+    </form>
+</div>
+<br>
+<div *ngIf="llegaronDatos">
+    <div class="titulo"><a>{{valores}}</a></div>
+    <br><br>
+    <div class="titulo"><a>Datos analizados</a></div>
+    <br /><br />
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="index">
+            <th mat-header-cell *matHeaderCellDef>Index</th>
+            <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container [matColumnDef]=Form.value.columnax>
+            <th mat-header-cell *matHeaderCellDef>{{Form.value.columnax}}</th>
+            <td mat-cell *matCellDef="let element">{{ element['Datos x'] }}</td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container [matColumnDef]=Form.value.columnay>
+            <th mat-header-cell *matHeaderCellDef>{{Form.value.columnay}}</th>
+            <td mat-cell *matCellDef="let element">{{ element['Datos y'] }}</td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="Resultado">
+            <th mat-header-cell *matHeaderCellDef>Regresión Lineal</th>
+            <td mat-cell *matCellDef="let element">{{ element['Regresión Lineal'] }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <br><br>
+    <div class="titulo"><a>Gráfica</a></div>
+    <br><br>
+    <img class="imagenes" [src]="graficaImg" alt="" />
+</div>

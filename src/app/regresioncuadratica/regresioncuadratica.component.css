@@ -1,0 +1,38 @@
+.datos{
+    background-color: #303030;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+    padding: 20px;
+}
+.titulo{
+    margin-top: 20px;
+    margin-left: 20px;
+    padding: 20px;
+    color: #303030;
+    font-size: 25px;
+}
+
+span{
+    font-size: 25px;
+}
+input{
+    font-size: 17px;
+}
+
+.imagenes{
+    padding-left: 30px;
+}
+select{
+    font-size: 17px;
+}
+table {
+    width: 100%;
+    margin-left: 30px;
+}
+.description{
+    text-decoration: none;
+    font-size: 17px;
+    color: white;
+}

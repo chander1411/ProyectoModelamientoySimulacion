@@ -1,0 +1,38 @@
+<div class="titulo"><a>Media Mediana y Moda</a></div>
+<mat-card>
+    <a class="description">El siguiente programa permite analizar datos de una columna utilizanddo un archivo .csv o
+        .xlsx obteniendo la media, mediana y moda de los datos analizados.</a>
+</mat-card>
+<div class="datos">
+    <form (ngSubmit)="onUpload()" [formGroup]="Form">
+        <label>
+            <span>Archivo Datos (.csv, .xlsx)</span>
+            <br><br>
+            <input class="hidden" type="file" #file accept=".csv, .xlsx" (change)="validar(file.files)"
+                class="inputfile" required>
+        </label>
+        <br>
+        <br>
+        <label>
+            <span>Columna para el Cálculo</span>
+            <br>
+            <br>
+            <select formControlName="columna" required>
+                <option value="">Selecciona una opción</option>
+                <option *ngFor="let opcion of opciones">
+                    {{opcion}}
+                </option>
+            </select>
+        </label>
+        <br><br>
+        <button [disabled]="Form.invalid" type="submit" class="btn btn-success">Calcular</button>
+    </form>
+</div>
+<div class="resultado" *ngIf="llegaronDatos">
+    <br />
+    <br />
+    <h3>{{ Form.value.columna }}</h3>
+    <p>Media: {{ media }}</p>
+    <p>Mediana: {{ mediana }}</p>
+    <p>Moda: {{ moda }}</p>
+</div>
