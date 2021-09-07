@@ -80,8 +80,8 @@ export class LecturadatosComponent implements OnInit {
       .subscribe((resp: any) => {
         console.log(resp);
         this.llegaronDatos = true;
-        this.datosImg = 'http://34.67.213.198:3000/images/' + resp.datos;
-        this.graficaImg = 'http://34.67.213.198:3000/images/' + resp.grafica;
+        this.datosImg = 'https://mundovirtual.cf/images/' + resp.datos;
+        this.graficaImg = 'https://mundovirtual.cf/images/' + resp.grafica;
       });
   }
 }

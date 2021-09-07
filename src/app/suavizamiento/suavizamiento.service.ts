@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable()
 export class SuavizamientoService {
-    private url = 'http://34.67.213.198:3000/api/suavizamiento/';
+    private url = 'https://mundovirtual.cf/api/suavizamiento/';
     constructor(private http: HttpClient) {
     }
     public subirArchivo(archivo: File, datos: string): Observable<any> {

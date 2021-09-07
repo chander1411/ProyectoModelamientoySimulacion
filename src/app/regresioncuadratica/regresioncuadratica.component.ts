@@ -89,7 +89,7 @@ export class RegresioncuadraticaComponent implements OnInit {
         this.displayedColumns = ['index', columnaxT, columnayT, 'Resultado'];
         this.llegaronDatos = true;
         this.valores = resp.valores;
-        this.graficaImg = 'http://34.67.213.198:3000/images/' + resp.grafica;
+        this.graficaImg = 'https://mundovirtual.cf/images/' + resp.grafica;
         this.dataSource = resp.dataframe;
         console.log(this.dataSource);
       });

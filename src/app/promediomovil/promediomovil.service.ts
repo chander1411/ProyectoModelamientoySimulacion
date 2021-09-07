@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable()
 export class PromedioMovilService {
-    private url = 'http://34.67.213.198:3000/api/promediomovil/';
+    private url = 'https://mundovirtual.cf/api/promediomovil/';
     constructor(private http: HttpClient) {
     }
     public subirArchivo(archivo: File, datos: string): Observable<any> {

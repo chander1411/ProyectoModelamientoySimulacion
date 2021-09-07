@@ -76,7 +76,7 @@ export class LineaesperaComponent implements OnInit {
         this.llegaronDatos = true;
         this.dataSource1 = resp.tabla;
         this.dataSource2 = resp.tablaDescribe;
-        this.grafica = 'http://34.67.213.198:3000/images/' + resp.grafico;
+        this.grafica = 'https://mundovirtual.cf/images/' + resp.grafico;
       });
   }
 

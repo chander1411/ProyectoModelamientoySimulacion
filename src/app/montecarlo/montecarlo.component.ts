@@ -101,7 +101,7 @@ export class MontecarloComponent implements OnInit {
         ];
         this.displayedColumns2 = ['index', 'Suma de las simulaciones'];
         this.llegaronDatos = true;
-        this.graficaImg = 'http://34.67.213.198:3000/images/' + resp.grafico;
+        this.graficaImg = 'https://mundovirtual.cf/images/' + resp.grafico;
         this.dataSource1 = resp.tablaX2;
         this.dataSource2 = resp.sumaSimulaciones;
       });

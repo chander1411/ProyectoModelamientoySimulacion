@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/internal/Observable';
   providedIn: 'root'
 })
 export class MediaMedianaModaService {
-  private url = 'http://34.67.213.198:3000/api/mmm/';
+  private url = 'https://mundovirtual.cf/api/mmm/';
   constructor(private http: HttpClient) {
   }
   public subirArchivo(archivo: File, datos: string): Observable<any> {
